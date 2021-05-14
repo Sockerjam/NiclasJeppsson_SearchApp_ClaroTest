@@ -13,6 +13,14 @@
 		92F1DC75264E889800C1BEB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F1DC73264E889800C1BEB5 /* Main.storyboard */; };
 		92F1DC77264E889B00C1BEB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92F1DC76264E889B00C1BEB5 /* Assets.xcassets */; };
 		92F1DC7A264E889B00C1BEB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F1DC78264E889B00C1BEB5 /* LaunchScreen.storyboard */; };
+		92F1DC89264E8A3900C1BEB5 /* ArtistInformationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC88264E8A3900C1BEB5 /* ArtistInformationImpl.swift */; };
+		92F1DC8B264E8A7100C1BEB5 /* ArtistInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC8A264E8A7100C1BEB5 /* ArtistInformation.swift */; };
+		92F1DC8D264E8B3300C1BEB5 /* ArtistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC8C264E8B3300C1BEB5 /* ArtistModel.swift */; };
+		92F1DC90264E8DBF00C1BEB5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC8F264E8DBF00C1BEB5 /* Constants.swift */; };
+		92F1DC92264EAB9600C1BEB5 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC91264EAB9600C1BEB5 /* NetworkRequest.swift */; };
+		92F1DC94264EABB400C1BEB5 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC93264EABB400C1BEB5 /* APIProtocol.swift */; };
+		92F1DC96264EC07000C1BEB5 /* ArtistAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC95264EC07000C1BEB5 /* ArtistAlbums.swift */; };
+		92F1DC9A264EDC5000C1BEB5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC99264EDC5000C1BEB5 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		92F1DC76264E889B00C1BEB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92F1DC79264E889B00C1BEB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92F1DC7B264E889B00C1BEB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92F1DC88264E8A3900C1BEB5 /* ArtistInformationImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistInformationImpl.swift; sourceTree = "<group>"; };
+		92F1DC8A264E8A7100C1BEB5 /* ArtistInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistInformation.swift; sourceTree = "<group>"; };
+		92F1DC8C264E8B3300C1BEB5 /* ArtistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistModel.swift; sourceTree = "<group>"; };
+		92F1DC8F264E8DBF00C1BEB5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		92F1DC91264EAB9600C1BEB5 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		92F1DC93264EABB400C1BEB5 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		92F1DC95264EC07000C1BEB5 /* ArtistAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbums.swift; sourceTree = "<group>"; };
+		92F1DC99264EDC5000C1BEB5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +74,61 @@
 			children = (
 				92F1DC6D264E889800C1BEB5 /* AppDelegate.swift */,
 				92F1DC6F264E889800C1BEB5 /* SceneDelegate.swift */,
-				92F1DC71264E889800C1BEB5 /* ViewController.swift */,
-				92F1DC73264E889800C1BEB5 /* Main.storyboard */,
+				92F1DC85264E891A00C1BEB5 /* Protocol */,
+				92F1DC82264E88BB00C1BEB5 /* Model */,
+				92F1DC81264E88B400C1BEB5 /* ViewModel */,
+				92F1DC83264E88C700C1BEB5 /* View */,
+				92F1DC8E264E8DB100C1BEB5 /* Constants */,
 				92F1DC76264E889B00C1BEB5 /* Assets.xcassets */,
 				92F1DC78264E889B00C1BEB5 /* LaunchScreen.storyboard */,
 				92F1DC7B264E889B00C1BEB5 /* Info.plist */,
 			);
 			path = NiclasJeppsson_SearchApp_ClaroTest;
+			sourceTree = "<group>";
+		};
+		92F1DC81264E88B400C1BEB5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92F1DC88264E8A3900C1BEB5 /* ArtistInformationImpl.swift */,
+				92F1DC91264EAB9600C1BEB5 /* NetworkRequest.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		92F1DC82264E88BB00C1BEB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92F1DC8C264E8B3300C1BEB5 /* ArtistModel.swift */,
+				92F1DC95264EC07000C1BEB5 /* ArtistAlbums.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92F1DC83264E88C700C1BEB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92F1DC73264E889800C1BEB5 /* Main.storyboard */,
+				92F1DC71264E889800C1BEB5 /* ViewController.swift */,
+				92F1DC99264EDC5000C1BEB5 /* CollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92F1DC85264E891A00C1BEB5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				92F1DC8A264E8A7100C1BEB5 /* ArtistInformation.swift */,
+				92F1DC93264EABB400C1BEB5 /* APIProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		92F1DC8E264E8DB100C1BEB5 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				92F1DC8F264E8DBF00C1BEB5 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +201,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F1DC96264EC07000C1BEB5 /* ArtistAlbums.swift in Sources */,
 				92F1DC72264E889800C1BEB5 /* ViewController.swift in Sources */,
 				92F1DC6E264E889800C1BEB5 /* AppDelegate.swift in Sources */,
+				92F1DC92264EAB9600C1BEB5 /* NetworkRequest.swift in Sources */,
+				92F1DC8D264E8B3300C1BEB5 /* ArtistModel.swift in Sources */,
+				92F1DC94264EABB400C1BEB5 /* APIProtocol.swift in Sources */,
+				92F1DC89264E8A3900C1BEB5 /* ArtistInformationImpl.swift in Sources */,
+				92F1DC8B264E8A7100C1BEB5 /* ArtistInformation.swift in Sources */,
 				92F1DC70264E889800C1BEB5 /* SceneDelegate.swift in Sources */,
+				92F1DC90264E8DBF00C1BEB5 /* Constants.swift in Sources */,
+				92F1DC9A264EDC5000C1BEB5 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.niclasjeppsson.NiclasJeppsson-SearchApp-ClaroTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +387,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.niclasjeppsson.NiclasJeppsson-SearchApp-ClaroTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
