@@ -1,0 +1,6 @@
+framework module Pods_NiclasJeppsson_SearchApp_ClaroTest {
+  umbrella header "Pods-NiclasJeppsson_SearchApp_ClaroTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

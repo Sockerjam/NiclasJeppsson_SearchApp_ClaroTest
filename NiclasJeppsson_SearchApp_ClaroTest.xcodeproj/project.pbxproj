@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EED318DFA14779550E79B26 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8EEBB0DB3EE21700A6FC11 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework */; };
 		9260D411264FD94D00A3494C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260D410264FD94D00A3494C /* Section.swift */; };
 		92F1DC6E264E889800C1BEB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC6D264E889800C1BEB5 /* AppDelegate.swift */; };
 		92F1DC70264E889800C1BEB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC6F264E889800C1BEB5 /* SceneDelegate.swift */; };
@@ -25,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2573956DEBD63A462711394F /* Pods-NiclasJeppsson_SearchApp_ClaroTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiclasJeppsson_SearchApp_ClaroTest.debug.xcconfig"; path = "Target Support Files/Pods-NiclasJeppsson_SearchApp_ClaroTest/Pods-NiclasJeppsson_SearchApp_ClaroTest.debug.xcconfig"; sourceTree = "<group>"; };
+		4C8EF20C5428B314E8E43DD9 /* Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig"; path = "Target Support Files/Pods-NiclasJeppsson_SearchApp_ClaroTest/Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig"; sourceTree = "<group>"; };
+		7C8EEBB0DB3EE21700A6FC11 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NiclasJeppsson_SearchApp_ClaroTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9260D410264FD94D00A3494C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		92F1DC6A264E889800C1BEB5 /* NiclasJeppsson_SearchApp_ClaroTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiclasJeppsson_SearchApp_ClaroTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F1DC6D264E889800C1BEB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,17 +53,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EED318DFA14779550E79B26 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7FFCE962A985DADB2C74C119 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EEBB0DB3EE21700A6FC11 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		92F1DC61264E889800C1BEB5 = {
 			isa = PBXGroup;
 			children = (
 				92F1DC6C264E889800C1BEB5 /* NiclasJeppsson_SearchApp_ClaroTest */,
 				92F1DC6B264E889800C1BEB5 /* Products */,
+				BC4933837AA3104AFB87B0CF /* Pods */,
+				7FFCE962A985DADB2C74C119 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +149,16 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		BC4933837AA3104AFB87B0CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2573956DEBD63A462711394F /* Pods-NiclasJeppsson_SearchApp_ClaroTest.debug.xcconfig */,
+				4C8EF20C5428B314E8E43DD9 /* Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92F1DC7E264E889B00C1BEB5 /* Build configuration list for PBXNativeTarget "NiclasJeppsson_SearchApp_ClaroTest" */;
 			buildPhases = (
+				E6E0AD83C5A3FFFE5C859F72 /* [CP] Check Pods Manifest.lock */,
 				92F1DC66264E889800C1BEB5 /* Sources */,
 				92F1DC67264E889800C1BEB5 /* Frameworks */,
 				92F1DC68264E889800C1BEB5 /* Resources */,
+				ADCFD68F83802F08D9858F97 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,6 +225,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ADCFD68F83802F08D9858F97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NiclasJeppsson_SearchApp_ClaroTest/Pods-NiclasJeppsson_SearchApp_ClaroTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NiclasJeppsson_SearchApp_ClaroTest/Pods-NiclasJeppsson_SearchApp_ClaroTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NiclasJeppsson_SearchApp_ClaroTest/Pods-NiclasJeppsson_SearchApp_ClaroTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6E0AD83C5A3FFFE5C859F72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NiclasJeppsson_SearchApp_ClaroTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		92F1DC66264E889800C1BEB5 /* Sources */ = {
@@ -359,6 +428,7 @@
 		};
 		92F1DC7F264E889B00C1BEB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2573956DEBD63A462711394F /* Pods-NiclasJeppsson_SearchApp_ClaroTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -378,6 +448,7 @@
 		};
 		92F1DC80264E889B00C1BEB5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C8EF20C5428B314E8E43DD9 /* Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
