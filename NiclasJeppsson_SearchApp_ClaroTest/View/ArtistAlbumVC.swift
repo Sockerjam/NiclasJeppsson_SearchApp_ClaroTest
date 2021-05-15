@@ -14,6 +14,10 @@ class ArtistAlbumVC: UIViewController {
         configuration.headerMode = .supplementary
         configuration.backgroundColor = .white
         var layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = true
+        layout.configuration.boundarySupplementaryItems = [headerElement]
         return layout
     }()
     
@@ -143,4 +147,10 @@ extension ArtistAlbumVC:ArtistBioDelegate{
     }
     
     
+}
+
+extension ArtistAlbumVC:UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        
+    }
 }

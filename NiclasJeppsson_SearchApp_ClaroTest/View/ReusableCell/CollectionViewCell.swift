@@ -16,6 +16,7 @@ class CollectionViewCell: UICollectionViewCell {
         let artistImage = UIImageView()
         artistImage.contentMode = .scaleAspectFit
         artistImage.translatesAutoresizingMaskIntoConstraints = false
+        artistImage.setContentHuggingPriority(.required, for: .horizontal)
         return artistImage
     }()
     
