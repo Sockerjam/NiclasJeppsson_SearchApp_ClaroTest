@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     
     private lazy var artistModelDataSource = UICollectionViewDiffableDataSource<Section, Artist>(collectionView: collectionViewList){ collectionViewList, indexPath, artistModel in
         let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.collectionViewReusableCellID, for: indexPath) as! CollectionViewCell
-        cell.configureCell(with: artistModel.name)
+        cell.configureCell(with: artistModel.name, with: artistModel.image[1].imageUrl)
         return cell
     }
     
@@ -58,8 +58,6 @@ class ViewController: UIViewController {
         setSearchFieldConstraints()
         setCollectionViewConstraints()
         artistInformation.setArtistModelDataSource(with: artistModelDataSource)
-        
-        //        artistInformation.getArtistAlbums(with: "Red+Hot+Chili+Peppers")
     }
     
     
@@ -99,21 +97,29 @@ extension ViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
-    
-    //TODO Format Input from Text Field if it's using spaces
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return true
-    }
 }
 
 extension ViewController:UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let artistString = artistInformation.artistItem.results.artistmatches.artist[indexPath.item].name
+        var formattedArtist:String = ""
+        for character in artistString {
+            if character == " " {
+                formattedArtist += "+"
+            } else {
+                formattedArtist += String(character)
+            }
+        }
+        
+        let vc = ArtistAlbumVC()
+        vc.artistName = formattedArtist
+        vc.modalPresentationStyle = .fullScreen
+        vc.title = artistString
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
    
 }
-
-//extension ViewController:UICollectionViewDelegateFlowLayout{
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.bounds.width, height: 100)
-//    }
-//}
 

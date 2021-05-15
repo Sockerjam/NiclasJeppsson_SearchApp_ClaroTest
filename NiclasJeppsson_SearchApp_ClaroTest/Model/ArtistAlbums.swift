@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ArtistAlbums:Decodable{
+struct ArtistAlbums:Decodable, Hashable{
     
     var topAlbums:TopAlbums
     
@@ -16,16 +16,16 @@ struct ArtistAlbums:Decodable{
     }
 }
 
-struct TopAlbums:Decodable{
+struct TopAlbums:Decodable, Hashable{
     var album:[Album]
 }
 
-struct Album:Decodable{
+struct Album:Decodable, Hashable{
     var name:String
     var image:[AlbumImage]
 }
 
-struct AlbumImage:Decodable{
+struct AlbumImage:Decodable, Hashable{
 
     var imageUrl:String
     var imageSize:String

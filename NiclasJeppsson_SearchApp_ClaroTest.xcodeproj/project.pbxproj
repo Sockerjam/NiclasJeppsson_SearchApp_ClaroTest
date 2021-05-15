@@ -3,12 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2EED318DFA14779550E79B26 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8EEBB0DB3EE21700A6FC11 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework */; };
 		9260D411264FD94D00A3494C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260D410264FD94D00A3494C /* Section.swift */; };
+		9260D413264FFCDA00A3494C /* ArtistAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260D412264FFCDA00A3494C /* ArtistAlbumVC.swift */; };
+		9260D415264FFD0E00A3494C /* ArtistAlbum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9260D414264FFD0E00A3494C /* ArtistAlbum.storyboard */; };
+		9260D4182650070000A3494C /* ArtistBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260D4172650070000A3494C /* ArtistBio.swift */; };
+		9260D41A26501EAD00A3494C /* HeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260D41926501EAD00A3494C /* HeaderReusableView.swift */; };
 		92F1DC6E264E889800C1BEB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC6D264E889800C1BEB5 /* AppDelegate.swift */; };
 		92F1DC70264E889800C1BEB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC6F264E889800C1BEB5 /* SceneDelegate.swift */; };
 		92F1DC72264E889800C1BEB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1DC71264E889800C1BEB5 /* ViewController.swift */; };
@@ -30,6 +34,10 @@
 		4C8EF20C5428B314E8E43DD9 /* Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig"; path = "Target Support Files/Pods-NiclasJeppsson_SearchApp_ClaroTest/Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig"; sourceTree = "<group>"; };
 		7C8EEBB0DB3EE21700A6FC11 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NiclasJeppsson_SearchApp_ClaroTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9260D410264FD94D00A3494C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		9260D412264FFCDA00A3494C /* ArtistAlbumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbumVC.swift; sourceTree = "<group>"; };
+		9260D414264FFD0E00A3494C /* ArtistAlbum.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArtistAlbum.storyboard; sourceTree = "<group>"; };
+		9260D4172650070000A3494C /* ArtistBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistBio.swift; sourceTree = "<group>"; };
+		9260D41926501EAD00A3494C /* HeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderReusableView.swift; sourceTree = "<group>"; };
 		92F1DC6A264E889800C1BEB5 /* NiclasJeppsson_SearchApp_ClaroTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiclasJeppsson_SearchApp_ClaroTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F1DC6D264E889800C1BEB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92F1DC6F264E889800C1BEB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +74,15 @@
 				7C8EEBB0DB3EE21700A6FC11 /* Pods_NiclasJeppsson_SearchApp_ClaroTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9260D416264FFEF800A3494C /* ReusableCell */ = {
+			isa = PBXGroup;
+			children = (
+				92F1DC99264EDC5000C1BEB5 /* CollectionViewCell.swift */,
+				9260D41926501EAD00A3494C /* HeaderReusableView.swift */,
+			);
+			path = ReusableCell;
 			sourceTree = "<group>";
 		};
 		92F1DC61264E889800C1BEB5 = {
@@ -117,6 +134,7 @@
 			children = (
 				92F1DC8C264E8B3300C1BEB5 /* ArtistModel.swift */,
 				92F1DC95264EC07000C1BEB5 /* ArtistAlbums.swift */,
+				9260D4172650070000A3494C /* ArtistBio.swift */,
 				9260D410264FD94D00A3494C /* Section.swift */,
 			);
 			path = Model;
@@ -125,9 +143,11 @@
 		92F1DC83264E88C700C1BEB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9260D416264FFEF800A3494C /* ReusableCell */,
 				92F1DC73264E889800C1BEB5 /* Main.storyboard */,
+				9260D414264FFD0E00A3494C /* ArtistAlbum.storyboard */,
 				92F1DC71264E889800C1BEB5 /* ViewController.swift */,
-				92F1DC99264EDC5000C1BEB5 /* CollectionViewCell.swift */,
+				9260D412264FFCDA00A3494C /* ArtistAlbumVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,7 +175,6 @@
 				2573956DEBD63A462711394F /* Pods-NiclasJeppsson_SearchApp_ClaroTest.debug.xcconfig */,
 				4C8EF20C5428B314E8E43DD9 /* Pods-NiclasJeppsson_SearchApp_ClaroTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -219,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F1DC7A264E889B00C1BEB5 /* LaunchScreen.storyboard in Resources */,
+				9260D415264FFD0E00A3494C /* ArtistAlbum.storyboard in Resources */,
 				92F1DC77264E889B00C1BEB5 /* Assets.xcassets in Resources */,
 				92F1DC75264E889800C1BEB5 /* Main.storyboard in Resources */,
 			);
@@ -275,14 +295,17 @@
 			files = (
 				92F1DC96264EC07000C1BEB5 /* ArtistAlbums.swift in Sources */,
 				92F1DC72264E889800C1BEB5 /* ViewController.swift in Sources */,
+				9260D41A26501EAD00A3494C /* HeaderReusableView.swift in Sources */,
 				92F1DC6E264E889800C1BEB5 /* AppDelegate.swift in Sources */,
 				92F1DC92264EAB9600C1BEB5 /* NetworkRequest.swift in Sources */,
+				9260D413264FFCDA00A3494C /* ArtistAlbumVC.swift in Sources */,
 				92F1DC8D264E8B3300C1BEB5 /* ArtistModel.swift in Sources */,
 				92F1DC94264EABB400C1BEB5 /* APIProtocol.swift in Sources */,
 				92F1DC89264E8A3900C1BEB5 /* ArtistInformationImpl.swift in Sources */,
 				92F1DC8B264E8A7100C1BEB5 /* ArtistInformation.swift in Sources */,
 				92F1DC70264E889800C1BEB5 /* SceneDelegate.swift in Sources */,
 				9260D411264FD94D00A3494C /* Section.swift in Sources */,
+				9260D4182650070000A3494C /* ArtistBio.swift in Sources */,
 				92F1DC90264E8DBF00C1BEB5 /* Constants.swift in Sources */,
 				92F1DC9A264EDC5000C1BEB5 /* CollectionViewCell.swift in Sources */,
 			);
