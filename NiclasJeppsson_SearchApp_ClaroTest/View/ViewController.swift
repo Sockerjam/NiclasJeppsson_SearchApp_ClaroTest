@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     
     private lazy var searchField:UITextField = {
         let searchField = UITextField(frame: .zero)
-        let textAttributes = NSAttributedString(string: "Search Artist...", attributes: [.font:UIFont.boldSystemFont(ofSize: 20),.foregroundColor:UIColor.black.withAlphaComponent(0.6)])
+        let textAttributes = NSAttributedString(string: "Search Artist...", attributes:
+        [.font:UIFont.boldSystemFont(ofSize: 20),.foregroundColor:UIColor.black.withAlphaComponent(0.6)])
         searchField.attributedPlaceholder = textAttributes
         searchField.backgroundColor = Colors.claroGreen
         searchField.layer.cornerRadius = 10
@@ -27,45 +28,60 @@ class ViewController: UIViewController {
     }()
     
     private lazy var collectionViewLayout:UICollectionViewCompositionalLayout = {
-        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        return UICollectionViewCompositionalLayout.list(using: configuration)
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.backgroundColor = .white
+        var layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        return layout
     }()
     
     private lazy var collectionViewList:UICollectionView = {
         let collectionViewList = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionViewList.backgroundColor = .white
+        collectionViewList.delegate = self
+        collectionViewList.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.collectionViewReusableCellID)
+        collectionViewList.translatesAutoresizingMaskIntoConstraints = false
         return collectionViewList
     }()
+    
+    private lazy var artistModelDataSource = UICollectionViewDiffableDataSource<Section, Artist>(collectionView: collectionViewList){ collectionViewList, indexPath, artistModel in
+        let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.collectionViewReusableCellID, for: indexPath) as! CollectionViewCell
+        cell.configureCell(with: artistModel.name)
+        return cell
+    }
     
     private var artistInformation:ArtistInformation = ArtistInformationImpl(networkRequest: NetworkRequest())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationSetup()
-        setupSearchTextField()
-        setupCollectionView()
+        setNavigationBar()
+        setSearchFieldConstraints()
+        setCollectionViewConstraints()
+        artistInformation.setArtistModelDataSource(with: artistModelDataSource)
         
-//        artistInformation.getArtistAlbums(with: "Red+Hot+Chili+Peppers")
+        //        artistInformation.getArtistAlbums(with: "Red+Hot+Chili+Peppers")
     }
-
     
-    private func navigationSetup(){
+    
+    private func setNavigationBar(){
         
         title = "Search App"
         navigationController?.navigationBar.prefersLargeTitles = true
         
     }
     
-    private func setupCollectionView(){
+    private func setCollectionViewConstraints(){
+        view.addSubview(collectionViewList)
         
+        NSLayoutConstraint.activate([collectionViewList.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 10), collectionViewList.bottomAnchor.constraint(equalTo: view.bottomAnchor), collectionViewList.leadingAnchor.constraint(equalTo: view.leadingAnchor), collectionViewList.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
     }
     
-    private func setupSearchTextField(){
+    private func setSearchFieldConstraints(){
         view.addSubview(searchField)
         
         NSLayoutConstraint.activate([searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20), searchField.centerXAnchor.constraint(equalTo: view.centerXAnchor), searchField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5), searchField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5), searchField.heightAnchor.constraint(equalToConstant: 40)])
     }
-
+    
 }
 
 extension ViewController:UITextFieldDelegate{
@@ -81,7 +97,7 @@ extension ViewController:UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       return true
+        return true
     }
     
     //TODO Format Input from Text Field if it's using spaces
@@ -89,4 +105,15 @@ extension ViewController:UITextFieldDelegate{
         return true
     }
 }
+
+extension ViewController:UICollectionViewDelegate {
+    
+   
+}
+
+//extension ViewController:UICollectionViewDelegateFlowLayout{
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: view.bounds.width, height: 100)
+//    }
+//}
 

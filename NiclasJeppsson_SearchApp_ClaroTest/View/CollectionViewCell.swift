@@ -13,6 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     private var artistImage:UIImageView = {
         let artistImage = UIImageView()
+        artistImage.contentMode = .scaleAspectFit
         artistImage.translatesAutoresizingMaskIntoConstraints = false
         return artistImage
     }()
@@ -32,8 +33,9 @@ class CollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(artistName:String, imageUrl:Image){
-        
+    func configureCell(with artistName:String){
+        self.artistName.text = artistName
+        self.artistImage.image = UIImage(systemName: "plus")
     }
     
     
@@ -41,7 +43,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         [artistImage, artistName].forEach {addSubview($0)}
         
-        NSLayoutConstraint.activate([artistImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10), artistImage.heightAnchor.constraint(equalToConstant: 60), artistImage.widthAnchor.constraint(equalToConstant: 60), artistName.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        NSLayoutConstraint.activate([heightAnchor.constraint(equalToConstant: 60),artistImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5), artistImage.topAnchor.constraint(equalTo: topAnchor, constant: 5), artistImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5), artistImage.heightAnchor.constraint(equalTo: heightAnchor), artistImage.widthAnchor.constraint(equalToConstant: 60), artistName.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 20)])
     }
     
     

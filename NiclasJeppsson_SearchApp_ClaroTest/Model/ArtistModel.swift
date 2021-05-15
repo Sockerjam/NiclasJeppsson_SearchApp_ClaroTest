@@ -8,27 +8,27 @@
 import Foundation
 
 
-struct ArtistModel:Decodable{
+struct ArtistModel:Decodable, Hashable{
     
     var results:Results
 }
 
-struct Results:Decodable{
+struct Results:Decodable, Hashable{
     var artistmatches:ArtistMatches
 }
 
-struct ArtistMatches:Decodable{
+struct ArtistMatches:Decodable, Hashable{
     
     var artist:[Artist]
 }
 
-struct Artist:Decodable{
+struct Artist:Decodable, Hashable{
     
     var name:String
     var image:[Image]
 }
 
-struct Image:Decodable{
+struct Image:Decodable, Hashable{
     
     var imageUrl:String
     var imageSize:String
