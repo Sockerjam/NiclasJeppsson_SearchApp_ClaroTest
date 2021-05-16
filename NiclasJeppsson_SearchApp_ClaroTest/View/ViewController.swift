@@ -9,10 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    enum Colors {
-        static let claroGreen = UIColor(red: 0.76, green: 0.88, blue: 0.77, alpha: 1.00)
-    }
-    
     private lazy var searchField:UITextField = {
         let searchField = UITextField(frame: .zero)
         let textAttributes = NSAttributedString(string: "Search Artist...", attributes:

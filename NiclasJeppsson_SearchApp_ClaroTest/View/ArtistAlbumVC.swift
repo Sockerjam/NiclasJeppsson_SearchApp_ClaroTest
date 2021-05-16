@@ -10,14 +10,9 @@ import UIKit
 class ArtistAlbumVC: UIViewController {
     
     private lazy var collectionViewLayout:UICollectionViewCompositionalLayout = {
-        var configuration = UICollectionLayoutListConfiguration(appearance: .grouped)
-        configuration.headerMode = .supplementary
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.backgroundColor = .white
         var layout = UICollectionViewCompositionalLayout.list(using: configuration)
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        headerElement.pinToVisibleBounds = true
-        layout.configuration.boundarySupplementaryItems = [headerElement]
         return layout
     }()
     
@@ -25,7 +20,6 @@ class ArtistAlbumVC: UIViewController {
         let collectionViewList = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionViewList.backgroundColor = .white
         collectionViewList.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.collectionViewReusableCellID)
-        collectionViewList.register(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReusableView.headerReusableViewID)
         collectionViewList.translatesAutoresizingMaskIntoConstraints = false
         return collectionViewList
     }()
@@ -45,8 +39,6 @@ class ArtistAlbumVC: UIViewController {
     
     private lazy var artistBioText:UILabel = {
         var artistBioText = UILabel()
-        artistBioText.font = UIFont(name: "Helvetica", size: 12)
-        artistBioText.text = "Bio: "
         artistBioText.numberOfLines = 10
         artistBioText.adjustsFontSizeToFitWidth = true
         artistBioText.textAlignment = .left
@@ -56,18 +48,22 @@ class ArtistAlbumVC: UIViewController {
     
     private lazy var artistListenersText:UILabel = {
         var text = UILabel()
-        text.font = UIFont(name: "Helvetica", size: 12)
-        text.text = "Listeners: "
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
     private lazy var artistPlaycountText:UILabel = {
         var text = UILabel()
-        text.font = UIFont(name: "Helvetica", size: 12)
-        text.text = "Playcount: "
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
+    }()
+    
+    private lazy var albumHeader:UILabel = {
+        var albumHeader = UILabel()
+        albumHeader.text = "Albums"
+        albumHeader.font = .preferredFont(forTextStyle: .largeTitle)
+        albumHeader.translatesAutoresizingMaskIntoConstraints = false
+        return albumHeader
     }()
     
     private var artistInformation:ArtistInformation = ArtistInformationImpl(networkRequest: NetworkRequest())
@@ -81,8 +77,6 @@ class ArtistAlbumVC: UIViewController {
         
         artistInformation.setDelegate = self
         
-        setHeaderConfiguration()
-        
         setArtistBioContraints()
         setCollectionViewConstraints()
         
@@ -93,16 +87,8 @@ class ArtistAlbumVC: UIViewController {
         
     }
     
-    private func setHeaderConfiguration(){
-        
-        artistAlbumDataSource.supplementaryViewProvider = {collectionViewList, elementKind, indexPath in
-            let headerView = collectionViewList.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReusableView.headerReusableViewID, for: indexPath)
-            return headerView
-        }
-    }
-    
     private func setArtistBioContraints(){
-        view.addSubview(artistBioView)
+        [artistBioView, albumHeader].forEach{view.addSubview($0)}
         [artistBioText, artistPlaycountText, artistListenersText].forEach{artistBioView.addSubview($0)}
         
         NSLayoutConstraint.activate([
@@ -117,7 +103,9 @@ class ArtistAlbumVC: UIViewController {
             artistPlaycountText.leadingAnchor.constraint(equalTo: artistBioView.leadingAnchor, constant: 10),
             artistPlaycountText.topAnchor.constraint(equalTo: artistBioText.bottomAnchor, constant: 10),
             artistListenersText.leadingAnchor.constraint(equalTo: artistBioView.leadingAnchor, constant: 10),
-            artistListenersText.topAnchor.constraint(equalTo: artistPlaycountText.bottomAnchor, constant: 10)
+            artistListenersText.topAnchor.constraint(equalTo: artistPlaycountText.bottomAnchor, constant: 10),
+            albumHeader.topAnchor.constraint(equalTo: artistBioView.bottomAnchor, constant: 10),
+            albumHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
             
             
         ])
@@ -129,7 +117,7 @@ class ArtistAlbumVC: UIViewController {
         view.addSubview(collectionViewList)
         
         NSLayoutConstraint.activate([
-            collectionViewList.topAnchor.constraint(equalTo: artistBioView.bottomAnchor),
+            collectionViewList.topAnchor.constraint(equalTo: albumHeader.bottomAnchor),
             collectionViewList.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionViewList.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionViewList.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -140,9 +128,15 @@ class ArtistAlbumVC: UIViewController {
 extension ArtistAlbumVC:ArtistBioDelegate{
     func getBioData(bio: String, listeners: String, playcount: String) {
         DispatchQueue.main.async {
-            self.artistBioText.text! += bio
-            self.artistListenersText.text! += listeners
-            self.artistPlaycountText.text! += playcount
+            self.artistBioText.attributedText = NSMutableAttributedString()
+                .bold("Bio: ")
+                .normal(bio)
+            self.artistListenersText.attributedText = NSMutableAttributedString()
+                .bold("Listeners: ")
+                .underlined(listeners)
+            self.artistPlaycountText.attributedText = NSMutableAttributedString()
+                .bold("Playcount: ")
+                .underlined(playcount)
         }
     }
     

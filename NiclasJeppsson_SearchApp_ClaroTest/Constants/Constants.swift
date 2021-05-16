@@ -13,6 +13,10 @@ struct Constants {
     static let searchArtistBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.search&artist="
     static let getArtistAlbumsBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist="
     static let getArtistBioBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="
-    
-    static let textFormat = UIFontDescriptor(name: "Helvetica", size: 0)
+    static let placeholderArtistImage = "https://images.freeimages.com/images/large-previews/5fa/vinyl-1418829.jpg"
+    static let textFormat = "Helvetica"
+}
+
+enum Colors {
+    static let claroGreen = UIColor(red: 0.76, green: 0.88, blue: 0.77, alpha: 1.00)
 }

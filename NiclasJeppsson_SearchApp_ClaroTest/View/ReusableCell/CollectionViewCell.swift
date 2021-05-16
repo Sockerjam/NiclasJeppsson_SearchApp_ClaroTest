@@ -16,17 +16,25 @@ class CollectionViewCell: UICollectionViewCell {
         let artistImage = UIImageView()
         artistImage.contentMode = .scaleAspectFit
         artistImage.translatesAutoresizingMaskIntoConstraints = false
-        artistImage.setContentHuggingPriority(.required, for: .horizontal)
         return artistImage
     }()
     
     private var artistName:UILabel = {
         let artistName = UILabel()
-        let textAttribute = NSAttributedString(string: "", attributes: [.font:UIFont(name: "Helvetica", size: 15)!])
+        let textAttribute = NSAttributedString(string: "", attributes: [.font:UIFont(name: Constants.textFormat, size: 13)!])
         artistName.attributedText = textAttribute
         artistName.adjustsFontSizeToFitWidth = true
         artistName.translatesAutoresizingMaskIntoConstraints = false
         return artistName
+    }()
+    
+    private var arrowImage:UIImageView = {
+        let arrowImage = UIImageView(frame: .zero)
+        arrowImage.contentMode = .scaleToFill
+        arrowImage.tintColor = .black
+        arrowImage.image = UIImage(systemName: "arrow.right.circle")
+        arrowImage.translatesAutoresizingMaskIntoConstraints = false
+        return arrowImage
     }()
     
     override init(frame: CGRect) {
@@ -48,22 +56,29 @@ class CollectionViewCell: UICollectionViewCell {
     
     private func setConstraints(){
         
-        [artistImage, artistName].forEach {addSubview($0)}
         
-        let constraintHeight = NSLayoutConstraint(item: artistImage, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30)
-        constraintHeight.priority = .defaultHigh
+        [artistImage, artistName, arrowImage].forEach {addSubview($0)}
+        
+        let constraintHeight = NSLayoutConstraint(item: artistImage, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 60)
+        constraintHeight.priority = .defaultHigh + 1
         
         NSLayoutConstraint.activate([
     
             artistImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             artistImage.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             artistImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
-            artistImage.heightAnchor.constraint(equalTo: heightAnchor),
             artistImage.widthAnchor.constraint(equalToConstant: 60),
             artistName.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 10),
-            artistName.centerYAnchor.constraint(equalTo: centerYAnchor)
+            artistName.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -5),
+            artistName.centerYAnchor.constraint(equalTo: centerYAnchor),
+            arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            arrowImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            arrowImage.widthAnchor.constraint(equalToConstant: 20),
+            constraintHeight
         
         ])
+        
+        
     }
     
     
