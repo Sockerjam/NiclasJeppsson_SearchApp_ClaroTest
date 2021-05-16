@@ -13,7 +13,7 @@ struct Constants {
     static let searchArtistBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.search&artist="
     static let getArtistAlbumsBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist="
     static let getArtistBioBaseURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="
-    static let placeholderArtistImage = "https://images.freeimages.com/images/large-previews/5fa/vinyl-1418829.jpg"
+    static let placeholderArtistImage = "https://cdn.pixabay.com/photo/2015/01/13/13/20/music-598176_1280.jpg"
     static let textFormat = "Helvetica"
 }
 

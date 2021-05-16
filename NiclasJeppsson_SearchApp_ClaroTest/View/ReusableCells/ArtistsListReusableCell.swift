@@ -14,6 +14,8 @@ class ArtistsListReusableCell: UICollectionViewCell {
     
     private var artistImage:UIImageView = {
         let artistImage = UIImageView()
+        artistImage.layer.cornerRadius = 10
+        artistImage.clipsToBounds = true
         artistImage.contentMode = .scaleAspectFit
         artistImage.translatesAutoresizingMaskIntoConstraints = false
         return artistImage

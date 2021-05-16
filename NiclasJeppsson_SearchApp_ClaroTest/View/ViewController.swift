@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     private lazy var artistModelDataSource = UICollectionViewDiffableDataSource<Section, Artist>(collectionView: collectionViewList){ collectionViewList, indexPath, artistModel in
         let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: ArtistsListReusableCell.reusableCellID, for: indexPath) as! ArtistsListReusableCell
-        cell.configureCell(with: artistModel.name, with: artistModel.image[1].imageUrl)
+        cell.configureCell(with: artistModel.name, with: Constants.placeholderArtistImage)
         return cell
     }
     
