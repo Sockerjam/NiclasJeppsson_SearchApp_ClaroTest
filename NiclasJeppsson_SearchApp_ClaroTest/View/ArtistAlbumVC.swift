@@ -19,13 +19,13 @@ class ArtistAlbumVC: UIViewController {
     private lazy var collectionViewList:UICollectionView = {
         let collectionViewList = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionViewList.backgroundColor = .white
-        collectionViewList.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.collectionViewReusableCellID)
+        collectionViewList.register(AlbumListReusableCell.self, forCellWithReuseIdentifier: AlbumListReusableCell.reusableCellID)
         collectionViewList.translatesAutoresizingMaskIntoConstraints = false
         return collectionViewList
     }()
     
     private lazy var artistAlbumDataSource = UICollectionViewDiffableDataSource<Section, Album>(collectionView: collectionViewList){ collectionViewList, indexPath, albumModel in
-        let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.collectionViewReusableCellID, for: indexPath) as! CollectionViewCell
+        let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: AlbumListReusableCell.reusableCellID, for: indexPath) as! AlbumListReusableCell
         cell.configureCell(with: albumModel.name, with: albumModel.image[1].imageUrl)
         return cell
     }
@@ -66,7 +66,7 @@ class ArtistAlbumVC: UIViewController {
         return albumHeader
     }()
     
-    private var artistInformation:ArtistInformation = ArtistInformationImpl(networkRequest: NetworkRequest())
+    private var albumAndBioInformation:AlbumAndBioInformationProtocol = AlbumAndBioInfoImpl(networkRequest: NetworkRequest())
     
     var artistName:String = ""
     
@@ -75,15 +75,15 @@ class ArtistAlbumVC: UIViewController {
         
         view.backgroundColor = .white
         
-        artistInformation.setDelegate = self
+        albumAndBioInformation.setDelegate = self
         
         setArtistBioContraints()
         setCollectionViewConstraints()
         
         
-        artistInformation.setAlbumModelDataSource(with: artistAlbumDataSource)
-        artistInformation.getArtistAlbums(with: artistName)
-        artistInformation.getArtistBio(with: artistName)
+        albumAndBioInformation.setAlbumModelDataSource(with: artistAlbumDataSource)
+        albumAndBioInformation.getArtistAlbums(with: artistName)
+        albumAndBioInformation.getArtistBio(with: artistName)
         
     }
     
@@ -144,7 +144,4 @@ extension ArtistAlbumVC:ArtistBioDelegate{
 }
 
 extension ArtistAlbumVC:UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        
-    }
 }

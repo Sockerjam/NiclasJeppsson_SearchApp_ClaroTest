@@ -1,16 +1,15 @@
 //
-//  CollectionViewCell.swift
+//  AlbumListReusableCell.swift
 //  NiclasJeppsson_SearchApp_ClaroTest
 //
-//  Created by Niclas Jeppsson on 14/05/2021.
+//  Created by Niclas Jeppsson on 16/05/2021.
 //
 
 import UIKit
-import SDWebImage
 
-class CollectionViewCell: UICollectionViewCell {
+class AlbumListReusableCell: UICollectionViewCell {
     
-    static let collectionViewReusableCellID = "reusableCollectionViewCell"
+    static let reusableCellID = "AlbumListReusableCell"
     
     private var artistImage:UIImageView = {
         let artistImage = UIImageView()
@@ -80,6 +79,5 @@ class CollectionViewCell: UICollectionViewCell {
         
         
     }
-    
     
 }
