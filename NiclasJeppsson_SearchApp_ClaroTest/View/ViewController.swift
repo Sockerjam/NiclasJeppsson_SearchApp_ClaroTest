@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     private lazy var searchField:UITextField = {
         let searchField = UITextField(frame: .zero)
-        let textAttributes = NSAttributedString(string: "Search Artist...", attributes:
+        let textAttributes = NSAttributedString(string: "Enter Artist Name", attributes:
         [.font:UIFont.boldSystemFont(ofSize: 20),.foregroundColor:UIColor.black.withAlphaComponent(0.6)])
         searchField.attributedPlaceholder = textAttributes
         searchField.backgroundColor = Colors.claroGreen
@@ -113,7 +113,6 @@ extension ViewController:UICollectionViewDelegate {
         vc.artistName = formattedArtist
         vc.modalPresentationStyle = .fullScreen
         vc.title = artistString
-        
         navigationController?.pushViewController(vc, animated: true)
     }
    

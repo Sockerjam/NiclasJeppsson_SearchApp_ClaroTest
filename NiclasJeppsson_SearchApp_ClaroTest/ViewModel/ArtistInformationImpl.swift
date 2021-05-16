@@ -34,10 +34,8 @@ extension ArtistInformationImpl:ArtistInformation{
         }
     }
     
-  
-        
     var artistItem: ArtistModel {
-       return listItems!
+        return listItems!
     }
     
     
@@ -63,7 +61,7 @@ extension ArtistInformationImpl:ArtistInformation{
         artistAlbumDataSource?.apply(snapShot)
     }
     
-
+    
     func searchArtist(with artistName: String){
         let urlString = "\(Constants.searchArtistBaseURL)\(artistName)&api_key=\(Constants.apiKey)&format=json"
         networkRequest.getData(url: urlString, resultType: ArtistModel.self) { result in
