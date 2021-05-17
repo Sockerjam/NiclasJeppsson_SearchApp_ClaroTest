@@ -74,14 +74,25 @@ class ArtistSearchVC: UIViewController {
     private func setCollectionViewConstraints(){
         view.addSubview(collectionViewList)
         
-        NSLayoutConstraint.activate([collectionViewList.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 10), collectionViewList.bottomAnchor.constraint(equalTo: view.bottomAnchor), collectionViewList.leadingAnchor.constraint(equalTo: view.leadingAnchor), collectionViewList.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+        NSLayoutConstraint.activate([
+        collectionViewList.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 10),
+        collectionViewList.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        collectionViewList.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        collectionViewList.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     //SearchField Constraints
     private func setSearchFieldConstraints(){
         view.addSubview(searchField)
         
-        NSLayoutConstraint.activate([searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20), searchField.centerXAnchor.constraint(equalTo: view.centerXAnchor), searchField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5), searchField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5), searchField.heightAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([
+        searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+        searchField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        searchField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+        searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+        searchField.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     //Formats Search Text To Work With URL

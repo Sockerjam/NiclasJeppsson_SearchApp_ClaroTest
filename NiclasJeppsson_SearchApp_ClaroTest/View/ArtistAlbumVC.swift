@@ -120,7 +120,7 @@ class ArtistAlbumVC: UIViewController {
             artistListenersText.leadingAnchor.constraint(equalTo: artistBioView.leadingAnchor, constant: 10),
             artistListenersText.topAnchor.constraint(equalTo: artistPlaycountText.bottomAnchor, constant: 10),
             albumHeader.topAnchor.constraint(equalTo: artistBioView.bottomAnchor, constant: 10),
-            albumHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            albumHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10)
             
             
         ])
