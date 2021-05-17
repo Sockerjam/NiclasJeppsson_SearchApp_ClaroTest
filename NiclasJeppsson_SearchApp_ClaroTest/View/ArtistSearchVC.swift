@@ -7,8 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ArtistSearchVC: UIViewController {
     
+    //Artist Search Field
     private lazy var searchField:UITextField = {
         let searchField = UITextField(frame: .zero)
         let textAttributes = NSAttributedString(string: "Enter Artist Name", attributes:
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         return searchField
     }()
     
+    //CollectionView Layout
     private lazy var collectionViewLayout:UICollectionViewCompositionalLayout = {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.backgroundColor = .white
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
         return layout
     }()
     
+    //CollectionViewList
     private lazy var collectionViewList:UICollectionView = {
         let collectionViewList = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionViewList.backgroundColor = .white
@@ -39,12 +42,14 @@ class ViewController: UIViewController {
         return collectionViewList
     }()
     
+    //CollectionViewDataSource
     private lazy var artistModelDataSource = UICollectionViewDiffableDataSource<Section, Artist>(collectionView: collectionViewList){ collectionViewList, indexPath, artistModel in
         let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: ArtistsListReusableCell.reusableCellID, for: indexPath) as! ArtistsListReusableCell
         cell.configureCell(with: artistModel.name, with: Constants.placeholderArtistImage)
         return cell
     }
     
+    //Dependency Inversion
     private var artistInformation:ArtistInformation = ArtistInformationImpl(networkRequest: NetworkRequest())
     
     override func viewDidLoad() {
@@ -57,6 +62,7 @@ class ViewController: UIViewController {
     }
     
     
+    //NavigationBar Setup
     private func setNavigationBar(){
         
         title = "Search App"
@@ -64,18 +70,21 @@ class ViewController: UIViewController {
         
     }
     
+    //CollectionView Constraints
     private func setCollectionViewConstraints(){
         view.addSubview(collectionViewList)
         
         NSLayoutConstraint.activate([collectionViewList.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 10), collectionViewList.bottomAnchor.constraint(equalTo: view.bottomAnchor), collectionViewList.leadingAnchor.constraint(equalTo: view.leadingAnchor), collectionViewList.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
     }
     
+    //SearchField Constraints
     private func setSearchFieldConstraints(){
         view.addSubview(searchField)
         
         NSLayoutConstraint.activate([searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20), searchField.centerXAnchor.constraint(equalTo: view.centerXAnchor), searchField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5), searchField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5), searchField.heightAnchor.constraint(equalToConstant: 40)])
     }
     
+    //Formats Search Text To Work With URL
     private func setTextFormat(searchTerm:String) -> String {
         
         var formattedSearchTerm:String = ""
@@ -93,8 +102,9 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController:UITextFieldDelegate{
+extension ArtistSearchVC:UITextFieldDelegate{
     
+    //Checks That SearchField Is Not Empty
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let userInput = textField.text, !textField.text!.isEmpty else {
             print("TextField Empy")
@@ -110,15 +120,15 @@ extension ViewController:UITextFieldDelegate{
     }
 }
 
-extension ViewController:UICollectionViewDelegate {
+extension ArtistSearchVC:UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let artistString = artistInformation.artistItem.results.artistmatches.artist[indexPath.item].name
         
         let formattedArtist = setTextFormat(searchTerm: artistString)
-
         
+        //Initilise ArtistAlbum ViewController
         let vc = ArtistAlbumVC()
         vc.artistName = formattedArtist
         vc.modalPresentationStyle = .fullScreen

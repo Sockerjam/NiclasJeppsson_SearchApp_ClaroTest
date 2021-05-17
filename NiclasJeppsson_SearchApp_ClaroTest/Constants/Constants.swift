@@ -19,4 +19,5 @@ struct Constants {
 
 enum Colors {
     static let claroGreen = UIColor(red: 0.76, green: 0.88, blue: 0.77, alpha: 1.00)
+    static let claroPink = UIColor(red: 0.87, green: 0.00, blue: 0.30, alpha: 1.00)
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class ArtistAlbumVC: UIViewController {
     
+    //CollectionView Layout
     private lazy var collectionViewLayout:UICollectionViewCompositionalLayout = {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.backgroundColor = .white
@@ -16,6 +17,7 @@ class ArtistAlbumVC: UIViewController {
         return layout
     }()
     
+    //CollectionView List
     private lazy var collectionViewList:UICollectionView = {
         let collectionViewList = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionViewList.backgroundColor = .white
@@ -24,12 +26,14 @@ class ArtistAlbumVC: UIViewController {
         return collectionViewList
     }()
     
+    //CollectionView DataSource
     private lazy var artistAlbumDataSource = UICollectionViewDiffableDataSource<Section, Album>(collectionView: collectionViewList){ collectionViewList, indexPath, albumModel in
         let cell = collectionViewList.dequeueReusableCell(withReuseIdentifier: AlbumListReusableCell.reusableCellID, for: indexPath) as! AlbumListReusableCell
         cell.configureCell(with: albumModel.name, with: albumModel.image[1].imageUrl)
         return cell
     }
     
+    //Artist Biography View
     private lazy var artistBioView:UIView = {
         let artistBioView = UIView(frame: .zero)
         artistBioView.backgroundColor = .white
@@ -37,6 +41,7 @@ class ArtistAlbumVC: UIViewController {
         return artistBioView
     }()
     
+    //Artist Biography Text
     private lazy var artistBioText:UILabel = {
         var artistBioText = UILabel()
         artistBioText.numberOfLines = 10
@@ -46,18 +51,21 @@ class ArtistAlbumVC: UIViewController {
         return artistBioText
     }()
     
+    //Artist Listeners Text
     private lazy var artistListenersText:UILabel = {
         var text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
+    //Artist Playcount Text
     private lazy var artistPlaycountText:UILabel = {
         var text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
+    //Album Header
     private lazy var albumHeader:UILabel = {
         var albumHeader = UILabel()
         albumHeader.text = "Albums"
@@ -66,9 +74,15 @@ class ArtistAlbumVC: UIViewController {
         return albumHeader
     }()
     
+    //Dependancy Inversion
     private var albumAndBioInformation:AlbumAndBioInformationProtocol = AlbumAndBioInfoImpl(networkRequest: NetworkRequest())
     
     var artistName:String = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = Colors.claroPink
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +101,7 @@ class ArtistAlbumVC: UIViewController {
         
     }
     
+    //Artist Biography Constraints
     private func setArtistBioContraints(){
         [artistBioView, albumHeader].forEach{view.addSubview($0)}
         [artistBioText, artistPlaycountText, artistListenersText].forEach{artistBioView.addSubview($0)}
@@ -113,6 +128,7 @@ class ArtistAlbumVC: UIViewController {
         
     }
     
+    //CollectionView Constraints
     private func setCollectionViewConstraints(){
         view.addSubview(collectionViewList)
         
@@ -141,7 +157,4 @@ extension ArtistAlbumVC:ArtistBioDelegate{
     }
     
     
-}
-
-extension ArtistAlbumVC:UICollectionViewDelegate{
 }

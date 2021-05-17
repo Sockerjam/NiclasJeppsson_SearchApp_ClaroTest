@@ -14,9 +14,9 @@ class ArtistsListReusableCell: UICollectionViewCell {
     
     private var artistImage:UIImageView = {
         let artistImage = UIImageView()
-        artistImage.layer.cornerRadius = 10
+        artistImage.layer.cornerRadius = 30
         artistImage.clipsToBounds = true
-        artistImage.contentMode = .scaleAspectFit
+        artistImage.contentMode = .scaleToFill
         artistImage.translatesAutoresizingMaskIntoConstraints = false
         return artistImage
     }()
@@ -33,7 +33,7 @@ class ArtistsListReusableCell: UICollectionViewCell {
     private var arrowImage:UIImageView = {
         let arrowImage = UIImageView(frame: .zero)
         arrowImage.contentMode = .scaleToFill
-        arrowImage.tintColor = .black
+        arrowImage.tintColor = Colors.claroPink
         arrowImage.image = UIImage(systemName: "arrow.right.circle")
         arrowImage.translatesAutoresizingMaskIntoConstraints = false
         return arrowImage
@@ -58,7 +58,6 @@ class ArtistsListReusableCell: UICollectionViewCell {
     
     private func setConstraints(){
         
-        
         [artistImage, artistName, arrowImage].forEach {addSubview($0)}
         
         let constraintHeight = NSLayoutConstraint(item: artistImage, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 60)
@@ -68,7 +67,7 @@ class ArtistsListReusableCell: UICollectionViewCell {
     
             artistImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             artistImage.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            artistImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
+            artistImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             artistImage.widthAnchor.constraint(equalToConstant: 60),
             artistName.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 10),
             artistName.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -5),
