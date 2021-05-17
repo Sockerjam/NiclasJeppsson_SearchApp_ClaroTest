@@ -9,6 +9,10 @@ import UIKit
 
 class ArtistAlbumVC: UIViewController {
     
+    //Resizing Artist BiographyView Height Based On Screen Rotation
+    private lazy var artistBioViewPortraitHeight = NSLayoutConstraint(item: artistBioView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 200)
+    private lazy var artistBioViewLandscapeHeight = NSLayoutConstraint(item: artistBioView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 150)
+    
     //CollectionView Layout
     private lazy var collectionViewLayout:UICollectionViewCompositionalLayout = {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -91,7 +95,8 @@ class ArtistAlbumVC: UIViewController {
         
         albumAndBioInformation.setDelegate = self
         
-        setArtistBioContraints()
+        addSubViews()
+        setArtistBioContraintsForPortraitMode()
         setCollectionViewConstraints()
         
         
@@ -101,17 +106,33 @@ class ArtistAlbumVC: UIViewController {
         
     }
     
-    //Artist Biography Constraints
-    private func setArtistBioContraints(){
+    //Adds Subviews
+    private func addSubViews(){
         [artistBioView, albumHeader].forEach{view.addSubview($0)}
         [artistBioText, artistPlaycountText, artistListenersText].forEach{artistBioView.addSubview($0)}
-        
+    }
+    
+    //Activiates Portrait Constraints
+    private func portraitHeightActivate(){
+        artistBioViewLandscapeHeight.isActive = false
+        artistBioViewPortraitHeight.isActive = true
+    }
+    
+    //Activiates Landscape Contraints
+    private func landscapeHeightActiviate(){
+        artistBioViewPortraitHeight.isActive = false
+        artistBioViewLandscapeHeight.isActive = true
+    }
+    
+    //Artist Biography Constraints For Portrait Mode
+    private func setArtistBioContraintsForPortraitMode(){
+      
         NSLayoutConstraint.activate([
             
+            artistBioViewPortraitHeight,
             artistBioView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             artistBioView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             artistBioView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            artistBioView.heightAnchor.constraint(equalToConstant: 200),
             artistBioText.topAnchor.constraint(equalTo: artistBioView.topAnchor, constant: 10),
             artistBioText.leadingAnchor.constraint(equalTo:artistBioView.leadingAnchor, constant: 10),
             artistBioText.trailingAnchor.constraint(equalTo: artistBioView.trailingAnchor, constant: -10),
@@ -120,12 +141,8 @@ class ArtistAlbumVC: UIViewController {
             artistListenersText.leadingAnchor.constraint(equalTo: artistBioView.leadingAnchor, constant: 10),
             artistListenersText.topAnchor.constraint(equalTo: artistPlaycountText.bottomAnchor, constant: 10),
             albumHeader.topAnchor.constraint(equalTo: artistBioView.bottomAnchor, constant: 10),
-            albumHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10)
-            
-            
+            albumHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
         ])
-        
-        
     }
     
     //CollectionView Constraints
@@ -139,8 +156,31 @@ class ArtistAlbumVC: UIViewController {
             collectionViewList.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    //Observes Screen Rotation
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate { UIViewControllerTransitionCoordinatorContext in
+            guard let screenOrientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {return}
+            switch screenOrientation {
+            case .landscapeLeft:
+                self.landscapeHeightActiviate()
+            case .landscapeRight:
+                self.landscapeHeightActiviate()
+            case .portrait:
+                self.portraitHeightActivate()
+            case .portraitUpsideDown:
+                self.portraitHeightActivate()
+            default:
+                self.portraitHeightActivate()
+            }
+        } completion: { UIViewControllerTransitionCoordinatorContext in
+            print("Rotation Completed")
+        }
+        super.viewWillTransition(to: size, with: coordinator)
+    }
 }
 
+//Custom NSMutableAttributeString Implementation For Biography View
 extension ArtistAlbumVC:ArtistBioDelegate{
     func getBioData(bio: String, listeners: String, playcount: String) {
         DispatchQueue.main.async {
